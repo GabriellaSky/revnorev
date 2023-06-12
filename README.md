@@ -156,3 +156,6 @@ python run_multiclass_hf.py --input_data './data/combined_data.csv' \
 --save_steps 1000 \
 --max_seq_len 128
 ```
+
+### Data
+In order to obtain access to the ClaimRev corpus, please reach out to Gabriella Skitalinskaya (email can be found in paper) along with your affiliation and a short description of how you will be using the data. Please let us know if you have any questions.
