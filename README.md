@@ -11,7 +11,7 @@ by Gabriella Skitalinskaya and Henning Wachsmuth
 
 - no context only claim `gabski/deberta-suboptimal-claim-detection`
 - with parent claim as contextual information `gabski/deberta-suboptimal-claim-detection-with-parent`
-- with main thesis context as contextual information `gabski/deberta-suboptimal-claim-detection-with-thesis`
+- with main thesis as contextual information `gabski/deberta-suboptimal-claim-detection-with-thesis`
 
 Example usage: 
 
@@ -48,7 +48,7 @@ print(outputs)
 
 - no context only claim `gabski/deberta-claim-improvement-suggestion`
 - with parent claim as contextual information `gabski/deberta-claim-improvement-suggestion-with-parent`
-- with main thesis context as contextual information `gabski/deberta-claim-improvement-suggestion-with-thesis`
+- with main thesis as contextual information `gabski/deberta-claim-improvement-suggestion-with-thesis`
 
 Example usage: 
 
