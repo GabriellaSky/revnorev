@@ -5,6 +5,82 @@ This repository contains the code associated with the following paper:
 [To Revise or Not to Revise: Learning to Detect Improvable Claims for Argumentative Writing Support](https://arxiv.org/abs/2305.16799)
 by Gabriella Skitalinskaya and Henning Wachsmuth
 
+## Ready-to-use models (Huggingface)
+
+### Suboptimal Claim Detection
+
+- no context only claim `gabski/deberta-suboptimal-claim-detection`
+- with parent claim as contextual information `gabski/deberta-suboptimal-claim-detection-with-parent`
+- with main thesis context as contextual information `gabski/deberta-suboptimal-claim-detection-with-thesis`
+
+Example usage: 
+
+```python
+from transformers import AutoTokenizer, AutoModelForSequenceClassification
+import torch
+
+tokenizer = AutoTokenizer.from_pretrained("gabski/deberta-suboptimal-claim-detection")
+model = AutoModelForSequenceClassification.from_pretrained("gabski/deberta-suboptimal-claim-detection")
+claim = 'Teachers are likely to educate children better than parents.'
+model_input = tokenizer(claim, return_tensors='pt')
+model_outputs = model(**model_input)
+
+outputs = torch.nn.functional.softmax(model_outputs.logits, dim = -1)
+print(outputs)
+```
+
+```python
+from transformers import AutoTokenizer, AutoModelForSequenceClassification
+import torch
+
+tokenizer = AutoTokenizer.from_pretrained("gabski/deberta-suboptimal-claim-detection-with-thesis")
+model = AutoModelForSequenceClassification.from_pretrained("gabski/deberta-suboptimal-claim-detection-with-thesis")
+claim = 'Teachers are likely to educate children better than parents.'
+thesis = 'Homeschooling should be banned.'
+model_input = tokenizer(claim, thesis, return_tensors='pt')
+model_outputs = model(**model_input)
+
+outputs = torch.nn.functional.softmax(model_outputs.logits, dim = -1)
+print(outputs)
+```
+
+### Claim Improvement Suggestion
+
+- no context only claim `gabski/deberta-claim-improvement-suggestion`
+- with parent claim as contextual information `gabski/deberta-claim-improvement-suggestion-with-parent`
+- with main thesis context as contextual information `gabski/deberta-claim-improvement-suggestion-with-thesis`
+
+Example usage: 
+
+```python
+from transformers import AutoTokenizer, AutoModelForSequenceClassification
+import torch
+
+tokenizer = AutoTokenizer.from_pretrained("gabski/deberta-claim-improvement-suggestion")
+model = AutoModelForSequenceClassification.from_pretrained("gabski/deberta-claim-improvement-suggestion")
+claim = 'Teachers are likely to educate children better than parents.'
+model_input = tokenizer(claim, return_tensors='pt')
+model_outputs = model(**model_input)
+
+outputs = torch.nn.functional.softmax(model_outputs.logits, dim = -1)
+print(outputs)
+```
+
+```python
+from transformers import AutoTokenizer, AutoModelForSequenceClassification
+import torch
+
+
+tokenizer = AutoTokenizer.from_pretrained("gabski/deberta-claim-improvement-suggestion-with-parent-context")
+model = AutoModelForSequenceClassification.from_pretrained("gabski/deberta-claim-improvement-suggestion-with-parent-context")
+claim = 'Teachers are likely to educate children better than parents.'
+parent_claim = 'Homeschooling should be banned.'
+model_input = tokenizer(claim,parent_claim, return_tensors='pt')
+model_outputs = model(**model_input)
+
+outputs = torch.nn.functional.softmax(model_outputs.logits, dim = -1)
+print(outputs)
+```
 ## Reproducing results
 
 ### Suboptimal Claim Detection
